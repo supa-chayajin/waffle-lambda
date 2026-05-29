@@ -1,0 +1,14 @@
+# Configuration principale d'EcoShield-Minimal (POC serverless AWS Lambda).
+waffle:
+  # Environnement applicatif (dev, prod, test), injecté par l'env serveur.
+  environment: '%env(APP_ENV)%'
+  # Mode debug : DOIT rester à false en production (évite la fuite d'informations).
+  debug: '%env(APP_DEBUG)%'
+  security:
+    # Niveau de sécurité minimal pour le POC (lu par le composant Security).
+    level: 1
+  paths:
+    # Dossier scanné par le Router (découverte des #[Route]) ET par le conteneur
+    # (auto-enregistrement des contrôleurs). INDISPENSABLE : sans ce chemin,
+    # aucune route n'est découverte et la requête GET / renvoie un 404.
+    controllers: 'src/Controller'

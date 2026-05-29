@@ -1,0 +1,36 @@
+services:
+  demo-aws:
+    # Construction à partir du stage 'prod' du Dockerfile.
+    # Ce stage est minimal, sécurisé et contient le code optimisé.
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: prod
+    # CRITIQUE : pas de volumes en production !
+    # Le code est immuable et figé dans l'image.
+    volumes: []
+    # Variables d'environnement de production.
+    environment:
+      # Utiliser le vrai nom de domaine (transmis via variable d'environnement, sinon localhost).
+      SERVER_NAME: ${SERVER_NAME:-localhost}
+      APP_ENV: prod
+      APP_DEBUG: false
+      # En production réelle, les secrets doivent être injectés via la CI/CD ou Docker Secrets.
+      APP_SECRET: ${APP_SECRET:-ChangeMeInProduction}
+      WAFFLE_CSRF_SECRET: ${APP_SECRET:-ChangeMeInProduction}
+    # Exposition des ports.
+    # Le conteneur écoute uniquement sur :8080 (cf. Caddyfile + AWS_LWA_PORT) ;
+    # AWS Lambda assure la terminaison TLS en amont, donc pas de 443 ici.
+    ports:
+      - "6080:8080"
+    # Politique de redémarrage en production.
+    restart: always
+    networks:
+      - waffle-network
+      - waffle-lambda
+
+networks:
+  waffle-network:
+    driver: bridge
+  waffle-lambda:
+    driver: bridge
