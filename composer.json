@@ -1,0 +1,36 @@
+{
+    "name": "supa-chayajin/waffle-lambda",
+    "description": "PHP Proxy Shield on AWS Lambda",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Wfl\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "WflTests\\": "tests/src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Leslie Petrimaux"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "waffle-commons/contracts": "dev-main",
+        "waffle-commons/waffle": "dev-main",
+        "waffle-commons/container": "dev-main",
+        "waffle-commons/config": "dev-main",
+        "waffle-commons/runtime": "dev-main",
+        "waffle-commons/pipeline": "dev-main",
+        "waffle-commons/http": "dev-main",
+        "waffle-commons/http-client": "dev-main",
+        "waffle-commons/error-handler": "dev-main",
+        "waffle-commons/routing": "dev-main",
+        "waffle-commons/security": "dev-main",
+        "waffle-commons/cache": "dev-main"
+    }
+}
