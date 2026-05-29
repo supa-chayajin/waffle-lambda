@@ -21,6 +21,8 @@ if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
 
     // On cible le framework complet pour le compiler en mémoire partagée.
     $roots = [
+        $projectDir . '/vendor/psr',
+        $projectDir . '/vendor/predis',
         $projectDir . '/vendor/waffle-commons',
     ];
 

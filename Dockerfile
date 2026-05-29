@@ -49,11 +49,11 @@ RUN echo "opcache.validate_timestamps = 1" >> $PHP_INI_DIR/conf.d/app.ini \
 RUN composer dump-autoload --optimize --classmap-authoritative --no-dev
 
 # ---- Étape 2 : Production (image minimale et sécurisée) ---------------------
-FROM dunglas/frankenphp:latest-php8.5 AS prod
+FROM dunglas/frankenphp:1.12.3-php8.5-trixie AS prod
 
 # Injection du AWS Lambda Web Adapter (LWA) en tant qu'extension Lambda :
 # il convertit chaque évènement Lambda en requête HTTP vers le port local 8080.
-COPY --from=public.ecr.aws/awsguru/aws-lambda-web-adapter:0.8.4 /lambda-adapter /opt/extensions/lambda-adapter
+COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.8.4 /lambda-adapter /opt/extensions/lambda-adapter
 
 WORKDIR /app
 
