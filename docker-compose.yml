@@ -17,6 +17,7 @@ services:
       APP_DEBUG: false
       # En production réelle, les secrets doivent être injectés via la CI/CD ou Docker Secrets.
       APP_SECRET: ${APP_SECRET:-ChangeMeInProduction}
+      WAFFLE_CSRF_SECRET: ${APP_SECRET:-ChangeMeInProduction}
     # Exposition des ports.
     # Le conteneur écoute uniquement sur :8080 (cf. Caddyfile + AWS_LWA_PORT) ;
     # AWS Lambda assure la terminaison TLS en amont, donc pas de 443 ici.
