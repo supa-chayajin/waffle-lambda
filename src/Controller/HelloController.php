@@ -62,7 +62,7 @@ final class HelloController extends BaseController
     public function locked(Message $message): ResponseInterface
     {
         return $this->jsonResponse(data: [
-            'message' => printf(format: 'Waffle says Hi to %s !', values: $message->author),
+            'message' => sprintf(format: 'Waffle says Hi to %s !', values: $message->author),
         ]);
     }
 }

@@ -4,10 +4,11 @@
 > (mode worker) et l'**AWS Lambda Web Adapter** (LWA), bâti sur le framework
 > [Waffle](https://github.com/waffle-commons) (`waffle-commons/*`).
 
-L'application expose une unique route de démonstration :
+L'application expose deux routes de démonstration :
 
 ```
-GET /  ->  200  {"message": "hello waffle"}
+GET /  ->  200  {"message": "hello Waffle!"}
+POST /locked  ->  200  {"message": "Waffle says Hi to $message->author !"}
 ```
 
 ---
